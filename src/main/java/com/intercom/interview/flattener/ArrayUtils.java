@@ -17,21 +17,17 @@ public class ArrayUtils {
 	 * @param listToFlatten the structure of lists to be flattened
 	 * @return a new list containing the flattened version of the structure of lists passed in input 
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static List<?> flatten(List<?> listToFlatten) {
-		List<?> flattenedList = new ArrayList<Object>();
-		flatten(listToFlatten, flattenedList);
-		return flattenedList;
-	}
-	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private static void flatten(List listToFlatten, List listFlattened) {
+		List flattenedList = new ArrayList<Object>();
 		for (Object currentItem : listToFlatten) {
-			if (currentItem instanceof List<?>) {
-				flatten((List<Object>)currentItem, listFlattened);
+			if (currentItem instanceof List) {
+				flattenedList.addAll( flatten((List<Object>)currentItem) );
 			} else {
-				listFlattened.add(currentItem);
+				flattenedList.add(currentItem);
 			}
 		}
+		return flattenedList;
 	}
-	
+
 }
