@@ -15,9 +15,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class ArrayUtilsTest {
+	
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 
 	@Test
 	public void canFlattenSimpleNestedLists() {
@@ -98,8 +103,8 @@ public class ArrayUtilsTest {
 		}
 	}
 	
-	@Test (expected = NullPointerException.class)
-	public void failsWithANullPointerExceptionIfAskedToFlattenANullObject() {
+	@Test
+	public void doesNotThrowAnExceptionIfAskedToFlattenANullObject() {
 		flatten((List<?>)null);
 	}
 	

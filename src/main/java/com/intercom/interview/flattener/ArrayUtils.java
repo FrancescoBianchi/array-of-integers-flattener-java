@@ -20,11 +20,13 @@ public class ArrayUtils {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static List<?> flatten(List<?> listToFlatten) {
 		List flattenedList = new ArrayList<Object>();
-		for (Object currentItem : listToFlatten) {
-			if (currentItem instanceof List) {
-				flattenedList.addAll( flatten((List<Object>)currentItem) );
-			} else {
-				flattenedList.add(currentItem);
+		if(listToFlatten != null) {
+			for (Object currentItem : listToFlatten) {
+				if (currentItem instanceof List) {
+					flattenedList.addAll( flatten((List<Object>)currentItem) );
+				} else {
+					flattenedList.add(currentItem);
+				}
 			}
 		}
 		return flattenedList;
